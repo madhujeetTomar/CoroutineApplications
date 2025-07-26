@@ -1,0 +1,387 @@
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 Coroutine Applications API Documentation\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Project Overview\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Package:} {\f1 com.mj.coroutineapplications}\line {\b Version:} 1.0\line {\b Min SDK:} 21\line {\b Target SDK:} 33\line {\b Build Tool:} Gradle 7.0.2\line {\b Kotlin Version:} 1.6.10\line {\b Coroutines Version:} 1.6.3\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This Android application demonstrates the usage of Kotlin Coroutines for asynchronous programming, featuring timeout handling, concurrent execution, and context switching between background and main threads.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Table of Contents\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 1.\tx360\tab {\field{\*\fldinst{HYPERLINK "#mainactivity"}}{\fldrslt{\ul
+MainActivity
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 2.\tx360\tab {\field{\*\fldinst{HYPERLINK "#public-methods"}}{\fldrslt{\ul
+Public Methods
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 3.\tx360\tab {\field{\*\fldinst{HYPERLINK "#private-methods"}}{\fldrslt{\ul
+Private Methods
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 4.\tx360\tab {\field{\*\fldinst{HYPERLINK "#ui-components"}}{\fldrslt{\ul
+UI Components
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 5.\tx360\tab {\field{\*\fldinst{HYPERLINK "#resources"}}{\fldrslt{\ul
+Resources
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 6.\tx360\tab {\field{\*\fldinst{HYPERLINK "#build-configuration"}}{\fldrslt{\ul
+Build Configuration
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 7.\tx360\tab {\field{\*\fldinst{HYPERLINK "#testing"}}{\fldrslt{\ul
+Testing
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 8.\tx360\tab {\field{\*\fldinst{HYPERLINK "#usage-examples"}}{\fldrslt{\ul
+Usage Examples
+}}}
+\sa180\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 MainActivity\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Class Definition\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 class MainActivity : AppCompatActivity()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Package:} {\f1 com.mj.coroutineapplications}\line {\b Extends:} {\f1 AppCompatActivity}\line {\b Purpose:} Main entry point of the application demonstrating coroutine usage patterns\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Properties\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Public Properties\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 None - all properties are internal to the class.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Internal Properties\par}
+{
+\trowd \trgaph120
+\clbrdrb\brdrs\cellx2979\clbrdrb\brdrs\cellx4766\clbrdrb\brdrs\cellx8639
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Property\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Type\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Description\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx2979\cellx4766\cellx8639
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 {\f1 tvResult}\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 {\f1 TextView}\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Displays the results of coroutine operations\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx2979\cellx4766\cellx8639
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 {\f1 clickMe}\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 {\f1 Button}\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Triggers the coroutine demonstration\par}
+\cell}
+}
+\intbl\row}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Public Methods\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 onCreate(savedInstanceState: Bundle?)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 override fun onCreate(savedInstanceState: Bundle?)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Initializes the activity and sets up UI components and event listeners.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Parameters:} - {\f1 savedInstanceState: Bundle?} - Saved state from previous instance (nullable)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Behavior:} 1. Sets the content view to {\f1 activity_main} layout 2. Initializes UI components ({\f1 tvResult} and {\f1 clickMe}) 3. Sets up click listener for the button 4. Launches coroutine demonstration on button click\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Example Usage:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 // Called automatically by Android framework\line
+// No direct invocation required\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Private Methods\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 fakeApiRequest()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 private suspend fun fakeApiRequest()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Demonstrates coroutine timeout handling and sequential execution with timeout.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Features:} - Uses {\f1 withTimeoutOrNull(1900)} for timeout handling - Executes two sequential API calls - Updates UI with results or timeout message - Switches context between IO and Main threads\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Execution Flow:} 1. Calls {\f1 result()} and updates UI 2. Calls {\f1 result2()} and updates UI 3. If operations exceed 1900ms, displays timeout message\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Example:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 // Internal usage within onClick listener\line
+CoroutineScope(Dispatchers.IO).launch \{\line
+    fakeApiRequest()\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 fakeApiRequest1()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 private suspend fun fakeApiRequest1()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Demonstrates concurrent coroutine execution using {\f1 async} and {\f1 awaitAll}.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Features:} - Concurrent execution of multiple suspend functions - Uses {\f1 async} for parallel processing - Waits for all operations to complete with {\f1 awaitAll}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Execution Flow:} 1. Creates two async coroutines for {\f1 result()} and {\f1 result2()} 2. Waits for both to complete 3. Updates UI with combined results\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Example:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 // Alternative implementation (currently commented out)\line
+private suspend fun fakeApiRequest1() \{\line
+    withContext(Dispatchers.IO) \{\line
+        val result = async \{ result() \}\line
+        val result2 = async \{ result2() \}\line
+        val deferred = awaitAll(result, result2)\line
+        setResult(deferred)\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 setResult(result: String)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 private suspend fun setResult(result: String)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Updates the UI with a single result string.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Parameters:} - {\f1 result: String} - The text to append to the current display\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Behavior:} - Switches to Main dispatcher for UI updates - Appends new result to existing text with newline separator - Thread-safe UI updates\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Context Switching:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 withContext(Dispatchers.Main) \{\line
+    val newText = tvResult.text.toString() + "\\n$result"\line
+    tvResult.text = newText\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 setResult(deferred: List)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 private suspend fun setResult(deferred: List<String>)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Updates the UI with multiple results from concurrent operations.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Parameters:} - {\f1 deferred: List<String>} - List of results from concurrent coroutines\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Behavior:} - Switches to Main dispatcher for UI updates - Combines all results into a single display string - Thread-safe UI updates\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Usage:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 withContext(Dispatchers.Main) \{\line
+    val newText = "$\{deferred[0]\} $\{deferred[1]\}"\line
+    tvResult.text = newText\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 result()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 private suspend fun result(): String\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Simulates a long-running API call or background operation.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Returns:} {\f1 String} - Always returns \u8220"Result\u8221"\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Behavior:} - Introduces 5-second delay using {\f1 delay(5000)} - Simulates network or database operation - Non-blocking suspension\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Example:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 val apiResult = result() // Takes 5 seconds to complete\line
+println(apiResult) // Prints: "Result"\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 result2()\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 private suspend fun result2(): String\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Simulates another long-running API call or background operation.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Returns:} {\f1 String} - Always returns \u8220"Result2\u8221"\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Behavior:} - Introduces 5-second delay using {\f1 delay(5000)} - Simulates network or database operation - Non-blocking suspension\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Example:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 val apiResult = result2() // Takes 5 seconds to complete\line
+println(apiResult) // Prints: "Result2"\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 UI Components\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Layout Structure\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 app/src/main/res/layout/activity_main.xml}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Root Container\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 <androidx.constraintlayout.widget.ConstraintLayout>\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Width:} {\f1 match_parent}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Height:} {\f1 match_parent}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Layout System:} ConstraintLayout\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 TextView (tvResult)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 <TextView android:id="@+id/tvResult">\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Properties:} - {\b ID:} {\f1 @+id/tvResult} - {\b Width:} {\f1 wrap_content} - {\b Height:} {\f1 wrap_content} - {\b Default Text:} \u8220"Hello World!\u8221" - {\b Position:} Centered in parent - {\b Purpose:} Displays coroutine operation results\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Constraints:} - Bottom to bottom of parent - Left to left of parent - Right to right of parent - Top to top of parent\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Button (clickMe)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 <Button android:id="@+id/button">\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Properties:} - {\b ID:} {\f1 @+id/button} - {\b Width:} {\f1 wrap_content} - {\b Height:} {\f1 wrap_content} - {\b Text:} \u8220"ClickMe\u8221" - {\b Top Margin:} 100dp - {\b Purpose:} Triggers coroutine demonstration\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Constraints:} - Bottom to top of tvResult - End to end of parent - Start to start of parent - Top to top of parent\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Resources\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Strings\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 app/src/main/res/values/strings.xml}\par}
+{
+\trowd \trgaph120
+\clbrdrb\brdrs\cellx2880\clbrdrb\brdrs\cellx5760\clbrdrb\brdrs\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 String ID\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Value\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Usage\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx2880\cellx5760\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 {\f1 app_name}\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 \u8220"CoroutineApplications\u8221"\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Application name\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx2880\cellx5760\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 {\f1 loading}\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 \u8220"Loading\u8230 ?\u8221"\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Loading state indicator\par}
+\cell}
+}
+\intbl\row}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Example Usage:}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 tvResult.text = getString(R.string.loading)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Application Configuration\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 app/src/main/AndroidManifest.xml}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Application Properties\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Package:} {\f1 com.mj.coroutineapplications}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Allow Backup:} {\f1 true}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Icon:} {\f1 @mipmap/ic_launcher}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Round Icon:} {\f1 @mipmap/ic_launcher_round}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b RTL Support:} {\f1 true}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Theme:} {\f1 @style/Theme.CoroutineApplications}\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 MainActivity Configuration\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Name:} {\f1 .MainActivity}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Exported:} {\f1 true}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Launch Intent:} {\f1 MAIN} action, {\f1 LAUNCHER} category\sa180\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Build Configuration\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Root Build Configuration\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 build.gradle}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Build Dependencies\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 dependencies \{\line
+    classpath "com.android.tools.build:gradle:7.0.2"\line
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Repositories\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Google Maven Repository\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Maven Central\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 App Module Configuration\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 app/build.gradle}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Android Configuration\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 android \{\line
+    compileSdk 33\line
+    defaultConfig \{\line
+        applicationId "com.mj.coroutineapplications"\line
+        minSdk 21\line
+        targetSdk 33\line
+        versionCode 1\line
+        versionName "1.0"\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 Key Dependencies\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 dependencies \{\line
+    // Coroutines\line
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"\line
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3"\line
+    \line
+    // Android Core\line
+    implementation 'androidx.core:core-ktx:1.9.0'\line
+    implementation 'androidx.appcompat:appcompat:1.4.1'\line
+    implementation 'com.google.android.material:material:1.6.0'\line
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\line
+    \line
+    // Kotlin Standard Library\line
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10"\line
+\}\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Testing\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Unit Tests\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 app/src/test/java/com/mj/coroutineapplications/ExampleUnitTest.kt}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 ExampleUnitTest Class\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 class ExampleUnitTest \{\line
+    @Test\line
+    fun addition_isCorrect() \{\line
+        assertEquals(4, 2 + 2)\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Basic unit test example\line {\b Framework:} JUnit\line {\b Execution:} Local development machine\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Instrumented Tests\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b File:} {\f1 app/src/androidTest/java/com/mj/coroutineapplications/ExampleInstrumentedTest.kt}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel3 \b \fs24 ExampleInstrumentedTest Class\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 @RunWith(AndroidJUnit4::class)\line
+class ExampleInstrumentedTest \{\line
+    @Test\line
+    fun useAppContext() \{\line
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext\line
+        assertEquals("com.mj.coroutineapplications", appContext.packageName)\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b Purpose:} Context validation test\line {\b Framework:} AndroidJUnit4\line {\b Execution:} Android device/emulator\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Usage Examples\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Basic Application Flow\par}
+{\pard \ql \f0 \sa180 \li360 \fi-360 1.\tx360\tab {\b Launch Application}\par}
+{\pard \ql \f0 \sa180 \li360 \fi0 \f1 // MainActivity automatically created by Android system\line
+// onCreate() initializes UI components\par}
+{\pard \ql \f0 \sa180 \li360 \fi-360 2.\tx360\tab {\b Trigger Coroutine Demo}\par}
+{\pard \ql \f0 \sa180 \li360 \fi0 \f1 // User clicks "ClickMe" button\line
+clickMe.setOnClickListener \{\line
+    tvResult.text = getString(R.string.loading)\line
+    CoroutineScope(Dispatchers.IO).launch \{\line
+        fakeApiRequest()\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li360 \fi-360 3.\tx360\tab {\b Execute Coroutines with Timeout}\par}
+{\pard \ql \f0 \sa180 \li360 \fi0 \f1 private suspend fun fakeApiRequest() \{\line
+    withContext(Dispatchers.IO) \{\line
+        val job = withTimeoutOrNull(1900) \{\line
+            val result1 = result()      // 5 seconds\line
+            setResult(result1)\line
+            val result2 = result2()     // 5 seconds\line
+            setResult(result2)\line
+        \}\line
+        if (job == null) \{\line
+            setResult("Cancelled Job due to TimeOut")\line
+        \}\line
+    \}\line
+\}\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Concurrent Execution Example\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 // Alternative implementation for parallel execution\line
+private suspend fun executeParallel() \{\line
+    withContext(Dispatchers.IO) \{\line
+        val deferred1 = async \{ result() \}\line
+        val deferred2 = async \{ result2() \}\line
+        val results = awaitAll(deferred1, deferred2)\line
+        setResult(results)\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Context Switching Pattern\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 // Background work\line
+withContext(Dispatchers.IO) \{\line
+    val data = performNetworkCall()\line
+    \line
+    // Switch to Main thread for UI updates\line
+    withContext(Dispatchers.Main) \{\line
+        updateUI(data)\line
+    \}\line
+\}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Error Handling with Timeout\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 val result = withTimeoutOrNull(timeoutMillis) \{\line
+    longRunningOperation()\line
+\}\line
+\line
+if (result == null) \{\line
+    handleTimeout()\line
+\} else \{\line
+    handleSuccess(result)\line
+\}\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Best Practices Demonstrated\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 1.\tx360\tab {\b Proper Context Switching:} Always switch to {\f1 Dispatchers.Main} for UI updates\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 2.\tx360\tab {\b Timeout Handling:} Use {\f1 withTimeoutOrNull} for operations that might hang\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 3.\tx360\tab {\b Concurrent Execution:} Use {\f1 async} and {\f1 awaitAll} for parallel operations\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 4.\tx360\tab {\b Resource Management:} Proper coroutine scope management\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 5.\tx360\tab {\b Thread Safety:} Ensure UI updates happen on the main thread\sa180\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Dependencies and Requirements\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Minimum Requirements\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Android SDK:} API 21 (Android 5.0)\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Kotlin:} 1.6.10\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Gradle:} 7.0.2\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Key Libraries\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Kotlinx Coroutines Core:} 1.6.3\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Kotlinx Coroutines Android:} 1.6.3\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b AndroidX Core KTX:} 1.9.0\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b AppCompat:} 1.4.1\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b Material Design:} 1.6.0\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b ConstraintLayout:} 2.1.4\sa180\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 Installation and Setup\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 1.\tx360\tab {\b Clone the repository}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 2.\tx360\tab {\b Open in Android Studio}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 3.\tx360\tab {\b Sync Gradle dependencies}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 4.\tx360\tab {\b Run on device or emulator}\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 ./gradlew assembleDebug\line
+./gradlew installDebug\par}
+{\pard \qc \f0 \sa180 \li0 \fi0 \emdash\emdash\emdash\emdash\emdash\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\i This documentation covers all public APIs, functions, and components in the Coroutine Applications project. For additional implementation details, refer to the source code files.}\par}

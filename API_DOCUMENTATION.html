@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>API_DOCUMENTATION</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#coroutine-applications-api-documentation"
+id="toc-coroutine-applications-api-documentation">Coroutine Applications
+API Documentation</a>
+<ul>
+<li><a href="#project-overview" id="toc-project-overview">Project
+Overview</a></li>
+<li><a href="#table-of-contents" id="toc-table-of-contents">Table of
+Contents</a></li>
+<li><a href="#mainactivity" id="toc-mainactivity">MainActivity</a>
+<ul>
+<li><a href="#class-definition" id="toc-class-definition">Class
+Definition</a></li>
+<li><a href="#properties" id="toc-properties">Properties</a></li>
+</ul></li>
+<li><a href="#public-methods" id="toc-public-methods">Public Methods</a>
+<ul>
+<li><a href="#oncreatesavedinstancestate-bundle"
+id="toc-oncreatesavedinstancestate-bundle">onCreate(savedInstanceState:
+Bundle?)</a></li>
+</ul></li>
+<li><a href="#private-methods" id="toc-private-methods">Private
+Methods</a>
+<ul>
+<li><a href="#fakeapirequest"
+id="toc-fakeapirequest">fakeApiRequest()</a></li>
+<li><a href="#fakeapirequest1"
+id="toc-fakeapirequest1">fakeApiRequest1()</a></li>
+<li><a href="#setresultresult-string"
+id="toc-setresultresult-string">setResult(result: String)</a></li>
+<li><a href="#setresultdeferred-list"
+id="toc-setresultdeferred-list">setResult(deferred:
+List<String>)</a></li>
+<li><a href="#result" id="toc-result">result()</a></li>
+<li><a href="#result2" id="toc-result2">result2()</a></li>
+</ul></li>
+<li><a href="#ui-components" id="toc-ui-components">UI Components</a>
+<ul>
+<li><a href="#layout-structure" id="toc-layout-structure">Layout
+Structure</a></li>
+</ul></li>
+<li><a href="#resources" id="toc-resources">Resources</a>
+<ul>
+<li><a href="#strings" id="toc-strings">Strings</a></li>
+<li><a href="#application-configuration"
+id="toc-application-configuration">Application Configuration</a></li>
+</ul></li>
+<li><a href="#build-configuration" id="toc-build-configuration">Build
+Configuration</a>
+<ul>
+<li><a href="#root-build-configuration"
+id="toc-root-build-configuration">Root Build Configuration</a></li>
+<li><a href="#app-module-configuration"
+id="toc-app-module-configuration">App Module Configuration</a></li>
+</ul></li>
+<li><a href="#testing" id="toc-testing">Testing</a>
+<ul>
+<li><a href="#unit-tests" id="toc-unit-tests">Unit Tests</a></li>
+<li><a href="#instrumented-tests"
+id="toc-instrumented-tests">Instrumented Tests</a></li>
+</ul></li>
+<li><a href="#usage-examples" id="toc-usage-examples">Usage Examples</a>
+<ul>
+<li><a href="#basic-application-flow"
+id="toc-basic-application-flow">Basic Application Flow</a></li>
+<li><a href="#concurrent-execution-example"
+id="toc-concurrent-execution-example">Concurrent Execution
+Example</a></li>
+<li><a href="#context-switching-pattern"
+id="toc-context-switching-pattern">Context Switching Pattern</a></li>
+<li><a href="#error-handling-with-timeout"
+id="toc-error-handling-with-timeout">Error Handling with
+Timeout</a></li>
+</ul></li>
+<li><a href="#best-practices-demonstrated"
+id="toc-best-practices-demonstrated">Best Practices
+Demonstrated</a></li>
+<li><a href="#dependencies-and-requirements"
+id="toc-dependencies-and-requirements">Dependencies and Requirements</a>
+<ul>
+<li><a href="#minimum-requirements"
+id="toc-minimum-requirements">Minimum Requirements</a></li>
+<li><a href="#key-libraries" id="toc-key-libraries">Key
+Libraries</a></li>
+</ul></li>
+<li><a href="#installation-and-setup"
+id="toc-installation-and-setup">Installation and Setup</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="coroutine-applications-api-documentation">Coroutine Applications
+API Documentation</h1>
+<h2 id="project-overview">Project Overview</h2>
+<p><strong>Package:</strong>
+<code>com.mj.coroutineapplications</code><br />
+<strong>Version:</strong> 1.0<br />
+<strong>Min SDK:</strong> 21<br />
+<strong>Target SDK:</strong> 33<br />
+<strong>Build Tool:</strong> Gradle 7.0.2<br />
+<strong>Kotlin Version:</strong> 1.6.10<br />
+<strong>Coroutines Version:</strong> 1.6.3</p>
+<p>This Android application demonstrates the usage of Kotlin Coroutines
+for asynchronous programming, featuring timeout handling, concurrent
+execution, and context switching between background and main
+threads.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#mainactivity">MainActivity</a></li>
+<li><a href="#public-methods">Public Methods</a></li>
+<li><a href="#private-methods">Private Methods</a></li>
+<li><a href="#ui-components">UI Components</a></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#build-configuration">Build Configuration</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#usage-examples">Usage Examples</a></li>
+</ol>
+<hr />
+<h2 id="mainactivity">MainActivity</h2>
+<h3 id="class-definition">Class Definition</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MainActivity <span class="op">:</span> <span class="dt">AppCompatActivity</span><span class="op">()</span></span></code></pre></div>
+<p><strong>Package:</strong>
+<code>com.mj.coroutineapplications</code><br />
+<strong>Extends:</strong> <code>AppCompatActivity</code><br />
+<strong>Purpose:</strong> Main entry point of the application
+demonstrating coroutine usage patterns</p>
+<h3 id="properties">Properties</h3>
+<h4 id="public-properties">Public Properties</h4>
+<p>None - all properties are internal to the class.</p>
+<h4 id="internal-properties">Internal Properties</h4>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 20%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tvResult</code></td>
+<td><code>TextView</code></td>
+<td>Displays the results of coroutine operations</td>
+</tr>
+<tr class="even">
+<td><code>clickMe</code></td>
+<td><code>Button</code></td>
+<td>Triggers the coroutine demonstration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="public-methods">Public Methods</h2>
+<h3 id="oncreatesavedinstancestate-bundle">onCreate(savedInstanceState:
+Bundle?)</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">override</span> <span class="kw">fun</span> <span class="fu">onCreate</span><span class="op">(</span><span class="va">savedInstanceState</span><span class="op">:</span> <span class="dt">Bundle</span><span class="op">?)</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Initializes the activity and sets up UI
+components and event listeners.</p>
+<p><strong>Parameters:</strong> -
+<code>savedInstanceState: Bundle?</code> - Saved state from previous
+instance (nullable)</p>
+<p><strong>Behavior:</strong> 1. Sets the content view to
+<code>activity_main</code> layout 2. Initializes UI components
+(<code>tvResult</code> and <code>clickMe</code>) 3. Sets up click
+listener for the button 4. Launches coroutine demonstration on button
+click</p>
+<p><strong>Example Usage:</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Called automatically by Android framework</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// No direct invocation required</span></span></code></pre></div>
+<hr />
+<h2 id="private-methods">Private Methods</h2>
+<h3 id="fakeapirequest">fakeApiRequest()</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">fakeApiRequest</span><span class="op">()</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Demonstrates coroutine timeout handling and
+sequential execution with timeout.</p>
+<p><strong>Features:</strong> - Uses
+<code>withTimeoutOrNull(1900)</code> for timeout handling - Executes two
+sequential API calls - Updates UI with results or timeout message -
+Switches context between IO and Main threads</p>
+<p><strong>Execution Flow:</strong> 1. Calls <code>result()</code> and
+updates UI 2. Calls <code>result2()</code> and updates UI 3. If
+operations exceed 1900ms, displays timeout message</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Internal usage within onClick listener</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>CoroutineScope<span class="op">(</span>Dispatchers<span class="op">.</span>IO<span class="op">).</span>launch <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    fakeApiRequest<span class="op">()</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="fakeapirequest1">fakeApiRequest1()</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">fakeApiRequest1</span><span class="op">()</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Demonstrates concurrent coroutine execution
+using <code>async</code> and <code>awaitAll</code>.</p>
+<p><strong>Features:</strong> - Concurrent execution of multiple suspend
+functions - Uses <code>async</code> for parallel processing - Waits for
+all operations to complete with <code>awaitAll</code></p>
+<p><strong>Execution Flow:</strong> 1. Creates two async coroutines for
+<code>result()</code> and <code>result2()</code> 2. Waits for both to
+complete 3. Updates UI with combined results</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Alternative implementation (currently commented out)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">fakeApiRequest1</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    withContext<span class="op">(</span>Dispatchers<span class="op">.</span>IO<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">result</span> <span class="op">=</span> async <span class="op">{</span> result<span class="op">()</span> <span class="op">}</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">result2</span> <span class="op">=</span> async <span class="op">{</span> result2<span class="op">()</span> <span class="op">}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">deferred</span> <span class="op">=</span> awaitAll<span class="op">(</span>result<span class="op">,</span> result2<span class="op">)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        setResult<span class="op">(</span>deferred<span class="op">)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="setresultresult-string">setResult(result: String)</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">setResult</span><span class="op">(</span><span class="va">result</span><span class="op">:</span> <span class="dt">String</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Updates the UI with a single result
+string.</p>
+<p><strong>Parameters:</strong> - <code>result: String</code> - The text
+to append to the current display</p>
+<p><strong>Behavior:</strong> - Switches to Main dispatcher for UI
+updates - Appends new result to existing text with newline separator -
+Thread-safe UI updates</p>
+<p><strong>Context Switching:</strong></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>withContext<span class="op">(</span>Dispatchers<span class="op">.</span>Main<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">newText</span> <span class="op">=</span> tvResult<span class="op">.</span>text<span class="op">.</span>toString<span class="op">()</span> <span class="op">+</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="ss">$result</span><span class="st">&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    tvResult<span class="op">.</span>text <span class="op">=</span> newText</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="setresultdeferred-list">setResult(deferred: List<String>)</h3>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">setResult</span><span class="op">(</span><span class="va">deferred</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">String</span>&gt;<span class="op">)</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Updates the UI with multiple results from
+concurrent operations.</p>
+<p><strong>Parameters:</strong> -
+<code>deferred: List&lt;String&gt;</code> - List of results from
+concurrent coroutines</p>
+<p><strong>Behavior:</strong> - Switches to Main dispatcher for UI
+updates - Combines all results into a single display string -
+Thread-safe UI updates</p>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>withContext<span class="op">(</span>Dispatchers<span class="op">.</span>Main<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">newText</span> <span class="op">=</span> <span class="st">&quot;</span><span class="ss">${</span>deferred<span class="op">[</span><span class="dv">0</span><span class="op">]</span><span class="ss">}</span><span class="st"> </span><span class="ss">${</span>deferred<span class="op">[</span><span class="dv">1</span><span class="op">]</span><span class="ss">}</span><span class="st">&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    tvResult<span class="op">.</span>text <span class="op">=</span> newText</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="result">result()</h3>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">result</span><span class="op">():</span> <span class="dt">String</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Simulates a long-running API call or
+background operation.</p>
+<p><strong>Returns:</strong> <code>String</code> - Always returns
+“Result”</p>
+<p><strong>Behavior:</strong> - Introduces 5-second delay using
+<code>delay(5000)</code> - Simulates network or database operation -
+Non-blocking suspension</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> <span class="va">apiResult</span> <span class="op">=</span> result<span class="op">()</span> <span class="co">// Takes 5 seconds to complete</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>println<span class="op">(</span>apiResult<span class="op">)</span> <span class="co">// Prints: &quot;Result&quot;</span></span></code></pre></div>
+<h3 id="result2">result2()</h3>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">result2</span><span class="op">():</span> <span class="dt">String</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Simulates another long-running API call or
+background operation.</p>
+<p><strong>Returns:</strong> <code>String</code> - Always returns
+“Result2”</p>
+<p><strong>Behavior:</strong> - Introduces 5-second delay using
+<code>delay(5000)</code> - Simulates network or database operation -
+Non-blocking suspension</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> <span class="va">apiResult</span> <span class="op">=</span> result2<span class="op">()</span> <span class="co">// Takes 5 seconds to complete</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>println<span class="op">(</span>apiResult<span class="op">)</span> <span class="co">// Prints: &quot;Result2&quot;</span></span></code></pre></div>
+<hr />
+<h2 id="ui-components">UI Components</h2>
+<h3 id="layout-structure">Layout Structure</h3>
+<p><strong>File:</strong>
+<code>app/src/main/res/layout/activity_main.xml</code></p>
+<h4 id="root-container">Root Container</h4>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></code></pre></div>
+<ul>
+<li><strong>Width:</strong> <code>match_parent</code></li>
+<li><strong>Height:</strong> <code>match_parent</code></li>
+<li><strong>Layout System:</strong> ConstraintLayout</li>
+</ul>
+<h4 id="textview-tvresult">TextView (tvResult)</h4>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">TextView</span><span class="ot"> android:id=</span><span class="st">&quot;@+id/tvResult&quot;</span>&gt;</span></code></pre></div>
+<p><strong>Properties:</strong> - <strong>ID:</strong>
+<code>@+id/tvResult</code> - <strong>Width:</strong>
+<code>wrap_content</code> - <strong>Height:</strong>
+<code>wrap_content</code> - <strong>Default Text:</strong> “Hello
+World!” - <strong>Position:</strong> Centered in parent -
+<strong>Purpose:</strong> Displays coroutine operation results</p>
+<p><strong>Constraints:</strong> - Bottom to bottom of parent - Left to
+left of parent - Right to right of parent - Top to top of parent</p>
+<h4 id="button-clickme">Button (clickMe)</h4>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">Button</span><span class="ot"> android:id=</span><span class="st">&quot;@+id/button&quot;</span>&gt;</span></code></pre></div>
+<p><strong>Properties:</strong> - <strong>ID:</strong>
+<code>@+id/button</code> - <strong>Width:</strong>
+<code>wrap_content</code> - <strong>Height:</strong>
+<code>wrap_content</code> - <strong>Text:</strong> “ClickMe” -
+<strong>Top Margin:</strong> 100dp - <strong>Purpose:</strong> Triggers
+coroutine demonstration</p>
+<p><strong>Constraints:</strong> - Bottom to top of tvResult - End to
+end of parent - Start to start of parent - Top to top of parent</p>
+<hr />
+<h2 id="resources">Resources</h2>
+<h3 id="strings">Strings</h3>
+<p><strong>File:</strong>
+<code>app/src/main/res/values/strings.xml</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>String ID</th>
+<th>Value</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>app_name</code></td>
+<td>“CoroutineApplications”</td>
+<td>Application name</td>
+</tr>
+<tr class="even">
+<td><code>loading</code></td>
+<td>“Loading…”</td>
+<td>Loading state indicator</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Usage:</strong></p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tvResult<span class="op">.</span>text <span class="op">=</span> getString<span class="op">(</span>R<span class="op">.</span>string<span class="op">.</span>loading<span class="op">)</span></span></code></pre></div>
+<h3 id="application-configuration">Application Configuration</h3>
+<p><strong>File:</strong>
+<code>app/src/main/AndroidManifest.xml</code></p>
+<h4 id="application-properties">Application Properties</h4>
+<ul>
+<li><strong>Package:</strong>
+<code>com.mj.coroutineapplications</code></li>
+<li><strong>Allow Backup:</strong> <code>true</code></li>
+<li><strong>Icon:</strong> <code>@mipmap/ic_launcher</code></li>
+<li><strong>Round Icon:</strong>
+<code>@mipmap/ic_launcher_round</code></li>
+<li><strong>RTL Support:</strong> <code>true</code></li>
+<li><strong>Theme:</strong>
+<code>@style/Theme.CoroutineApplications</code></li>
+</ul>
+<h4 id="mainactivity-configuration">MainActivity Configuration</h4>
+<ul>
+<li><strong>Name:</strong> <code>.MainActivity</code></li>
+<li><strong>Exported:</strong> <code>true</code></li>
+<li><strong>Launch Intent:</strong> <code>MAIN</code> action,
+<code>LAUNCHER</code> category</li>
+</ul>
+<hr />
+<h2 id="build-configuration">Build Configuration</h2>
+<h3 id="root-build-configuration">Root Build Configuration</h3>
+<p><strong>File:</strong> <code>build.gradle</code></p>
+<h4 id="build-dependencies">Build Dependencies</h4>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode gradle"><code class="sourceCode groovy"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dependencies <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    classpath <span class="st">&quot;com.android.tools.build:gradle:7.0.2&quot;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    classpath <span class="st">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10&quot;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="repositories">Repositories</h4>
+<ul>
+<li>Google Maven Repository</li>
+<li>Maven Central</li>
+</ul>
+<h3 id="app-module-configuration">App Module Configuration</h3>
+<p><strong>File:</strong> <code>app/build.gradle</code></p>
+<h4 id="android-configuration">Android Configuration</h4>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode gradle"><code class="sourceCode groovy"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>android <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    compileSdk <span class="dv">33</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    defaultConfig <span class="op">{</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        applicationId <span class="st">&quot;com.mj.coroutineapplications&quot;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        minSdk <span class="dv">21</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        targetSdk <span class="dv">33</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        versionCode <span class="dv">1</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        versionName <span class="st">&quot;1.0&quot;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="key-dependencies">Key Dependencies</h4>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode gradle"><code class="sourceCode groovy"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dependencies <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Coroutines</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3&quot;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3&quot;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Android Core</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&#39;androidx.core:core-ktx:1.9.0&#39;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&#39;androidx.appcompat:appcompat:1.4.1&#39;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&#39;com.google.android.material:material:1.6.0&#39;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&#39;androidx.constraintlayout:constraintlayout:2.1.4&#39;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Kotlin Standard Library</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    implementation <span class="st">&quot;org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10&quot;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="testing">Testing</h2>
+<h3 id="unit-tests">Unit Tests</h3>
+<p><strong>File:</strong>
+<code>app/src/test/java/com/mj/coroutineapplications/ExampleUnitTest.kt</code></p>
+<h4 id="exampleunittest-class">ExampleUnitTest Class</h4>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ExampleUnitTest <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Test</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">addition_isCorrect</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        assertEquals<span class="op">(</span><span class="dv">4</span><span class="op">,</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Basic unit test example<br />
+<strong>Framework:</strong> JUnit<br />
+<strong>Execution:</strong> Local development machine</p>
+<h3 id="instrumented-tests">Instrumented Tests</h3>
+<p><strong>File:</strong>
+<code>app/src/androidTest/java/com/mj/coroutineapplications/ExampleInstrumentedTest.kt</code></p>
+<h4 id="exampleinstrumentedtest-class">ExampleInstrumentedTest
+Class</h4>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RunWith</span><span class="op">(</span>AndroidJUnit4<span class="op">::</span><span class="kw">class</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ExampleInstrumentedTest <span class="op">{</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Test</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">useAppContext</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">appContext</span> <span class="op">=</span> InstrumentationRegistry<span class="op">.</span>getInstrumentation<span class="op">().</span>targetContext</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        assertEquals<span class="op">(</span><span class="st">&quot;com.mj.coroutineapplications&quot;</span><span class="op">,</span> appContext<span class="op">.</span>packageName<span class="op">)</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Purpose:</strong> Context validation test<br />
+<strong>Framework:</strong> AndroidJUnit4<br />
+<strong>Execution:</strong> Android device/emulator</p>
+<hr />
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-application-flow">Basic Application Flow</h3>
+<ol type="1">
+<li><p><strong>Launch Application</strong></p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">// MainActivity automatically created by Android system</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">// onCreate() initializes UI components</span></span></code></pre></div></li>
+<li><p><strong>Trigger Coroutine Demo</strong></p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">// User clicks &quot;ClickMe&quot; button</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>clickMe<span class="op">.</span>setOnClickListener <span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    tvResult<span class="op">.</span>text <span class="op">=</span> getString<span class="op">(</span>R<span class="op">.</span>string<span class="op">.</span>loading<span class="op">)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    CoroutineScope<span class="op">(</span>Dispatchers<span class="op">.</span>IO<span class="op">).</span>launch <span class="op">{</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        fakeApiRequest<span class="op">()</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p><strong>Execute Coroutines with Timeout</strong></p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">fakeApiRequest</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    withContext<span class="op">(</span>Dispatchers<span class="op">.</span>IO<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">job</span> <span class="op">=</span> withTimeoutOrNull<span class="op">(</span><span class="dv">1900</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">val</span> <span class="va">result1</span> <span class="op">=</span> result<span class="op">()</span>      <span class="co">// 5 seconds</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            setResult<span class="op">(</span>result1<span class="op">)</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="kw">val</span> <span class="va">result2</span> <span class="op">=</span> result2<span class="op">()</span>     <span class="co">// 5 seconds</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            setResult<span class="op">(</span>result2<span class="op">)</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>job <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>            setResult<span class="op">(</span><span class="st">&quot;Cancelled Job due to TimeOut&quot;</span><span class="op">)</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+</ol>
+<h3 id="concurrent-execution-example">Concurrent Execution Example</h3>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Alternative implementation for parallel execution</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> suspend <span class="kw">fun</span> <span class="fu">executeParallel</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    withContext<span class="op">(</span>Dispatchers<span class="op">.</span>IO<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">deferred1</span> <span class="op">=</span> async <span class="op">{</span> result<span class="op">()</span> <span class="op">}</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">deferred2</span> <span class="op">=</span> async <span class="op">{</span> result2<span class="op">()</span> <span class="op">}</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> <span class="va">results</span> <span class="op">=</span> awaitAll<span class="op">(</span>deferred1<span class="op">,</span> deferred2<span class="op">)</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        setResult<span class="op">(</span>results<span class="op">)</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="context-switching-pattern">Context Switching Pattern</h3>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Background work</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>withContext<span class="op">(</span>Dispatchers<span class="op">.</span>IO<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">data</span> <span class="op">=</span> performNetworkCall<span class="op">()</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Switch to Main thread for UI updates</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    withContext<span class="op">(</span>Dispatchers<span class="op">.</span>Main<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        updateUI<span class="op">(</span><span class="kw">data</span><span class="op">)</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="error-handling-with-timeout">Error Handling with Timeout</h3>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> <span class="va">result</span> <span class="op">=</span> withTimeoutOrNull<span class="op">(</span>timeoutMillis<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    longRunningOperation<span class="op">()</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>result <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    handleTimeout<span class="op">()</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    handleSuccess<span class="op">(</span>result<span class="op">)</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="best-practices-demonstrated">Best Practices Demonstrated</h2>
+<ol type="1">
+<li><strong>Proper Context Switching:</strong> Always switch to
+<code>Dispatchers.Main</code> for UI updates</li>
+<li><strong>Timeout Handling:</strong> Use
+<code>withTimeoutOrNull</code> for operations that might hang</li>
+<li><strong>Concurrent Execution:</strong> Use <code>async</code> and
+<code>awaitAll</code> for parallel operations</li>
+<li><strong>Resource Management:</strong> Proper coroutine scope
+management</li>
+<li><strong>Thread Safety:</strong> Ensure UI updates happen on the main
+thread</li>
+</ol>
+<hr />
+<h2 id="dependencies-and-requirements">Dependencies and
+Requirements</h2>
+<h3 id="minimum-requirements">Minimum Requirements</h3>
+<ul>
+<li><strong>Android SDK:</strong> API 21 (Android 5.0)</li>
+<li><strong>Kotlin:</strong> 1.6.10</li>
+<li><strong>Gradle:</strong> 7.0.2</li>
+</ul>
+<h3 id="key-libraries">Key Libraries</h3>
+<ul>
+<li><strong>Kotlinx Coroutines Core:</strong> 1.6.3</li>
+<li><strong>Kotlinx Coroutines Android:</strong> 1.6.3</li>
+<li><strong>AndroidX Core KTX:</strong> 1.9.0</li>
+<li><strong>AppCompat:</strong> 1.4.1</li>
+<li><strong>Material Design:</strong> 1.6.0</li>
+<li><strong>ConstraintLayout:</strong> 2.1.4</li>
+</ul>
+<hr />
+<h2 id="installation-and-setup">Installation and Setup</h2>
+<ol type="1">
+<li><strong>Clone the repository</strong></li>
+<li><strong>Open in Android Studio</strong></li>
+<li><strong>Sync Gradle dependencies</strong></li>
+<li><strong>Run on device or emulator</strong></li>
+</ol>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> assembleDebug</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> installDebug</span></code></pre></div>
+<hr />
+<p><em>This documentation covers all public APIs, functions, and
+components in the Coroutine Applications project. For additional
+implementation details, refer to the source code files.</em></p>
+</body>
+</html>
